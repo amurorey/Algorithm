@@ -42,12 +42,11 @@ public class AlgoFrame extends JFrame {
         return canvasHeight;
     }
 
-    //TODO:设置自己数据
-    private Object data;
+    private int[] money;
 
 
-    public void render(Object data) {
-        this.data = data;
+    public void render(int[] money) {
+        this.money = money;
         repaint();
     }
 
@@ -67,11 +66,15 @@ public class AlgoFrame extends JFrame {
 
             //抗锯齿
             RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            hints.put(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_DEFAULT);
+            hints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_DEFAULT);
             g2d.addRenderingHints(hints);
 
             //具体绘制
-            //TODO: 绘制自己的数据data
+            AlgoVisHelper.setColor(g2d, AlgoVisHelper.Blue);
+            int w = canvasWidth / money.length;
+            for (int i = 0; i < money.length; i++) {
+                AlgoVisHelper.fillRectangle(g2d, i * w + 1, canvasHeight - money[i], w - 1, money[i]);
+            }
 
         }
 
