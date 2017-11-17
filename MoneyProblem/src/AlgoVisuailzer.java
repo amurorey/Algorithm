@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,20 +39,27 @@ public class AlgoVisuailzer {
     //动画逻辑
     private void runlogic() {
         while (true) {
+
+            Arrays.sort(money);
             frame.render(money);
             AlgoVisHelper.pause(DELAY);
 
-            for (int i = 0; i < money.length; i++) {
-                if (money[i] > 0) {
-                    int j = (int) (Math.random() * money.length);
-                    money[i] -= 1;
-                    money[j] += 1;
+            for (int k = 0; k < 50; k++) {
+                for (int i = 0; i < money.length; i++) {
+                    //if (money[i] > 0) {
+                        int j = (int) (Math.random() * money.length);
+                        money[i] -= 1;
+                        money[j] += 1;
+                    //}
                 }
             }
         }
     }
 
     //程序入口
+    /*
+     *模拟描述：房间内有 100 人，每人有 100 块，每分钟随机给另一个人 1 块，最后这个房间内的财富分布怎样？
+     */
     public static void main(String[] args) {
 
         final int sceneWidth = 1000;
